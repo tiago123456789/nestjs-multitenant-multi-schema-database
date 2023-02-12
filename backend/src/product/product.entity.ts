@@ -1,10 +1,7 @@
-import { Tenant } from 'src/tenant/tenant.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
 
 @Entity('products')
@@ -20,12 +17,6 @@ export class Product {
 
   @Column()
   private image: string;
-
-  @ManyToOne((type) => Tenant, (tenant) => tenant.id)
-  @JoinColumn({
-    name: 'tenant_id',
-  })
-  private tenant: Tenant;
 
   getId(): string {
     return this.id;
@@ -43,10 +34,6 @@ export class Product {
     return this.image;
   }
 
-  getTenant(): Tenant {
-    return this.tenant;
-  }
-
   setName(name: string) {
     this.name = name;
   }
@@ -59,7 +46,4 @@ export class Product {
     this.image = image;
   }
 
-  setTenant(tenant: Tenant) {
-    this.tenant = tenant;
-  }
 }

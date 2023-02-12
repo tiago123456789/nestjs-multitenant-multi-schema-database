@@ -20,7 +20,7 @@ export class TenantAndArticleTable1675548784870 implements MigrationInterface {
           },
         ],
       }),
-      false,
+      true,
     );
 
     await queryRunner.createTable(
@@ -57,7 +57,7 @@ export class TenantAndArticleTable1675548784870 implements MigrationInterface {
           },
         ],
       }),
-      false,
+      true,
     );
   }
 

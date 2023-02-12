@@ -6,7 +6,7 @@ export class Tenant {
   id: string;
 
   @Column()
-  domain: string;
+  name: string;
 
   getId() {
     return this.id;
@@ -16,11 +16,11 @@ export class Tenant {
     this.id = id;
   }
 
-  getDomain() {
-    return this.domain;
+  getName() {
+    return this.name;
   }
 
-  setDomain(domain) {
-    this.domain = domain;
+  setName(name) {
+    this.name = name;
   }
 }

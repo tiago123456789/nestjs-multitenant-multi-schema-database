@@ -1,3 +1,3 @@
 export class TenantDto {
-  domain: string;
+  name: string;
 }

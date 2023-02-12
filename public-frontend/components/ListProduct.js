@@ -9,7 +9,7 @@ export default ({ products }) => {
             {
                 products.map(product => {
                     return (
-                        <Card className="col-md-3 mb-4" style={{ margin: "5px" }}>
+                        <Card key={product.id} className="col-md-3 mb-4" style={{ margin: "5px" }}>
                             <img
                                 alt={product.name}
                                 src={product.image}

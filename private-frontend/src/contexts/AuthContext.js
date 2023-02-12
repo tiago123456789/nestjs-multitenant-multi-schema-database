@@ -7,8 +7,8 @@ export const AuthContextProvider = ({ children }) => {
     const [accessToken, setAccessToken] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     
-    const authenticate = async (domain) => {
-        const response =  await api.post("tenants/auth", { domain })
+    const authenticate = async (name) => {
+        const response =  await api.post("tenants/auth", { name })
         localStorage.setItem(KEY_ACCESS_TOKEN_LOCALSTORE, response.token)
         setAccessToken(response.token)
         setIsAuthenticated(true)

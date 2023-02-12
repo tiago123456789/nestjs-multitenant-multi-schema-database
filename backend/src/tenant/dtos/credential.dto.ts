@@ -1,3 +1,3 @@
 export class CredentialDto {
-  public domain: string;
+  public name: string;
 }

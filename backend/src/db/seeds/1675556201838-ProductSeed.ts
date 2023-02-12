@@ -5,16 +5,15 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class ProductSeed1675556201838 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const tenant = new Tenant();
-    tenant.setDomain('test2.app.br');
+    tenant.setName('test');
     await queryRunner.manager.insert(Tenant, tenant);
 
     const product = new Product();
-    product.setName('Smart phone');
+    product.setName('Smart phone testeadfa asdfasd');
     product.setPrice(1000);
     product.setImage(
       'https://brmotorolanew.vtexassets.com/arquivos/ids/163515-1600-auto?v=638084402112630000&width=1600&height=auto&aspect=true',
     );
-    product.setTenant(tenant);
     await queryRunner.manager.insert(Product, [product]);
   }
 

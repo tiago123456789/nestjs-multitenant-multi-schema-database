@@ -1,15 +1,32 @@
-import { CacheModule, Module } from '@nestjs/common';
+import { CacheModule, Module, Scope } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TenantController } from './tenant.controller';
 import { TenantService } from './tenant.service';
 import { Tenant } from './tenant.entity';
-import { PublicTenantInterceptor } from './interceptors/public-tenant.interceptor';
 import { JwtModule } from '@nestjs/jwt';
-import { PrivateTenantInterceptor } from './interceptors/private-tenant-interceptor';
 import { ConfigService } from '@nestjs/config';
+import { CONNECTION } from 'src/common/types/tenant';
+import RequestWithTenantId from 'src/common/contracts/request-with-tenantId.contract';
+import { getTenantConnection } from './tenant.utils';
+import { REQUEST } from '@nestjs/core';
+import { ExecuteMigrationsCommand } from './commands/execute-migrations.command';
+import { ExecuteSeedCommand } from './commands/execute-seeds.command';
 
 const cacheConfig = {
   store: 'memory',
+}
+
+const tenantConfigProvider = {
+  provide: CONNECTION,
+  scope: Scope.REQUEST,
+  inject: [REQUEST],
+  useFactory: (request: RequestWithTenantId) => {
+    if (request.tenantId) {
+      return getTenantConnection(request.tenantId)
+    }
+
+    return null;
+  }
 }
 
 @Module({
@@ -26,12 +43,16 @@ const cacheConfig = {
     }),
   ],
   controllers: [TenantController],
-  providers: [TenantService, PublicTenantInterceptor, PrivateTenantInterceptor],
+  providers: [
+    TenantService,
+    tenantConfigProvider,
+    ExecuteMigrationsCommand,
+    ExecuteSeedCommand
+  ],
   exports: [
-    PublicTenantInterceptor,
-    PrivateTenantInterceptor,
     TenantService,
     CacheModule.register(cacheConfig),
+    tenantConfigProvider
   ],
 })
 export class TenantModule { }

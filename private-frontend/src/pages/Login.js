@@ -9,23 +9,23 @@ import AuthContext from "../contexts/AuthContext"
 
 export default () => {
     const navigator = useNavigate()
-    const [domain, setDomain] = useState("")
+    const [name, setName] = useState("")
     const { authenticate } = useContext(AuthContext)
 
     const login = async (event) => {
         event.preventDefault()
-        await authenticate(domain);
-        setDomain("")
+        await authenticate(name);
+        setName("")
         navigator("/admin/products")
     }
 
     return (
         <>
             <Form>
-                <Label>Domain:</Label>
+                <Label>Name:</Label>
                 <Input
-                    value={domain}
-                    onChange={(event) => setDomain(event.target.value)}
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
                     className="mb-1"
                 />
                 <Button color="primary" onClick={login}>Login</Button>

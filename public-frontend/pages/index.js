@@ -27,6 +27,7 @@ export async function getServerSideProps(context) {
         context.req.headers["origin"] ||
         context.req.headers["referer"]
     );
+
     const products = await fetch(`${process.env.API_URL}products`, {
         headers: {
             origin
