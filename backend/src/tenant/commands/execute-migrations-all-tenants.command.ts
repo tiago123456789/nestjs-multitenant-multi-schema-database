@@ -20,7 +20,6 @@ export class ExecuteMigrationsAllTenantsCommand implements CommandRunner {
                         return item.nspname.startsWith("tenant_")
                     })
                     .map(item => item.nspname)
-        console.log(schemas)
 
         for (let index = 0; index < schemas.length; index++) {
             const schemaToRunMigrations = schemas[index].split("_")[1];
