@@ -1,7 +1,7 @@
-import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { Tenant } from './tenant.entity';
-import { Repository, Connection, EntityManager } from 'typeorm';
+import { Repository, EntityManager } from 'typeorm';
 import { TenantDto } from './dtos/tenant.dto';
 import { CredentialDto } from './dtos/credential.dto';
 import { JwtService } from '@nestjs/jwt';

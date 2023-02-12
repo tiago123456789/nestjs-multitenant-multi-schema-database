@@ -11,6 +11,7 @@ import { getTenantConnection } from './tenant.utils';
 import { REQUEST } from '@nestjs/core';
 import { ExecuteMigrationsCommand } from './commands/execute-migrations.command';
 import { ExecuteSeedCommand } from './commands/execute-seeds.command';
+import { ExecuteMigrationsAllTenantsCommand } from './commands/execute-migrations-all-tenants.command';
 
 const cacheConfig = {
   store: 'memory',
@@ -47,7 +48,8 @@ const tenantConfigProvider = {
     TenantService,
     tenantConfigProvider,
     ExecuteMigrationsCommand,
-    ExecuteSeedCommand
+    ExecuteSeedCommand,
+    ExecuteMigrationsAllTenantsCommand
   ],
   exports: [
     TenantService,
