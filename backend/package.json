@@ -6,12 +6,6 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f orm.config.js",
-    "seed:make": "npx typeorm migration:create -f ./orm.config.seeders.js -d src/db/seeds -n ",
-    "seed:run": "npm run build && npx typeorm migration:run -f ./orm.config.seeders.js",
-    "seed:rollback": "npm run build && npx typeorm migration:revert -f ./orm.config.seeders.js",
-    "migration:make": "npx typeorm migration:create -d src/db/migrations -n",
-    "migration:run": "npx typeorm migration:run -f ./orm.config.migrations.js",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
