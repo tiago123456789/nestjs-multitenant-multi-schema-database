@@ -23,7 +23,7 @@ export class ExecuteSeedCommand implements CommandRunner {
         flags: '-s, --schema [string]',
         description: 'The tenant name to execute migrations'
     })
-    parseString(val: string): string {
+    parseSchema(val: string): string {
         return val;
     }
 
