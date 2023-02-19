@@ -1,9 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export class TenantAndArticleTable1675548784870 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    const { schema } = queryRunner.connection.options as PostgresConnectionOptions;
     await queryRunner.createTable(
       new Table({
+        schema,
         name: 'tenants',
         columns: [
           {
@@ -25,6 +28,7 @@ export class TenantAndArticleTable1675548784870 implements MigrationInterface {
 
     await queryRunner.createTable(
       new Table({
+        schema,
         name: 'products',
         columns: [
           {
@@ -62,7 +66,8 @@ export class TenantAndArticleTable1675548784870 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.query(`DROP IF EXISTS TABLE products`);
-    queryRunner.query(`DROP IF EXISTS TABLE tenants`);
+    const { schema } = queryRunner.connection.options as PostgresConnectionOptions;
+    await queryRunner.query(`DROP TABLE ${schema}.products`);
+    await queryRunner.query(`DROP TABLE ${schema}.tenants`);
   }
 }
