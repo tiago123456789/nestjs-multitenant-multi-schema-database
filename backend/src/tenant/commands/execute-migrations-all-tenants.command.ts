@@ -43,7 +43,7 @@ export class ExecuteMigrationsAllTenantsCommand implements CommandRunner {
         flags: '-t, --type [string]',
         description: 'The action to execute. You can set RUN to run migrations and DOWN undo the last migration'
     })
-    parseSchema(val: string): string {
+    parseType(val: string): string {
         return val
     }
 
